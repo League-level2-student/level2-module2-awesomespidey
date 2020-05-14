@@ -2,14 +2,18 @@
 // ***** SEGMENT CLASS *****
 // This class will be used to represent each part of the moving snake.
 //*
-
+ 
 class Segment {
 
 //Add x and y member variables. They will hold the corner location of each segment of the snake.
-
+int x; 
+int y;
 
 // Add a constructor with parameters to initialize each variable.
-
+ Segment (int x,int y){
+ this.x = x;
+ this.y = y;
+ }
 
 
 }
