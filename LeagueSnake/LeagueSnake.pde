@@ -25,8 +25,8 @@ int y;
 //*
 Segment head;
  int foodX, foodY;
-
-
+  int direction = UP;
+  int foodEaten;
 
 
 //*
@@ -47,8 +47,6 @@ void dropFood() {
     foodY = (int)random(500);
 }
 
-
-
 //*
 // ***** DRAW METHODS *****
 // These methods are used to draw the snake and its food 
@@ -57,6 +55,7 @@ void dropFood() {
 void draw() {
   background (0,0,0);
   drawFood();
+  move();
   drawSnake();
 }
 
@@ -95,40 +94,55 @@ void checkTailCollision() {
 }
 
 
-
 //*
 // ***** CONTROL METHODS *****
 // These methods are used to change what is happening to the snake
 //*
 
 void keyPressed() {
-  //Set the direction of the snake according to the arrow keys pressed
+  if (key == CODED){
+    if (keyCode == UP){
+    fillVal = 255;
+    else if (keyCode == DOWN){
+    
+  }
   
 }
 
 void move() {
   //Change the location of the Snake head based on the direction it is moving.
   
-    /*
+    
   switch(direction) {
   case UP:
-    // move head up here 
+    head.y--; 
     break;
   case DOWN:
-    // move head down here 
+    head.y++; 
     break;
   case LEFT:
-   // figure it out 
+   head.x--; 
     break;
   case RIGHT:
-    // mystery code goes here 
+   head.x++; 
     break;
   }
-  */
+  checkBoundaries();
 }
 
 void checkBoundaries() {
- //If the snake leaves the frame, make it reappear on the other side
+ if (head.x <= 0){
+   head.x = width-10;
+ }
+ if (head.x >= width){
+   head.x = 0;
+ }
+ if (head.y <= 0){
+   head.y = height-10;
+ }
+ if (head.y >= height){
+   head.y = 0;
+ }
  
 }
 
