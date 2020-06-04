@@ -57,6 +57,7 @@ void draw() {
   drawFood();
   move();
   drawSnake();
+  eat();
 }
 
 void drawFood() {
@@ -70,7 +71,7 @@ void drawSnake() {
   fill (#00F9FF);
   rect (head.x,head.y,10,10);
 }
-
+  
 
 //*
 // ***** TAIL MANAGEMENT METHODS *****
@@ -101,18 +102,33 @@ void checkTailCollision() {
 
 void keyPressed() {
   if (key == CODED){
-    if (keyCode == UP){
-    fillVal = 255;
-    else if (keyCode == DOWN){
-    
-  }
   
+    if (keyCode == UP){
+    if (direction != DOWN){
+      direction = UP;
+    }
+    }
+    else if (keyCode == DOWN){
+    if (direction != UP){
+      direction = DOWN;
+    }
+    else if (keyCode == RIGHT){
+      if (direction != LEFT){
+       direction = RIGHT; 
+      }
+    }
+    else if (keyCode == LEFT){
+     if (direction != RIGHT){
+      direction = LEFT; 
+     }
+    }
 }
-
+    
+}
+} 
 void move() {
   //Change the location of the Snake head based on the direction it is moving.
   
-    
   switch(direction) {
   case UP:
     head.y--; 
@@ -150,5 +166,9 @@ void checkBoundaries() {
 
 void eat() {
   //When the snake eats the food, its tail should grow and more food appear
-
+  if (head.x == foodX && head.y == foodY){
+    foodEaten++;
+    dropFood();
+  }
+  
 }
