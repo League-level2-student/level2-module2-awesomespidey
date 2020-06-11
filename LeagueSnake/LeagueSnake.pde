@@ -25,8 +25,9 @@ int y;
 //*
 Segment head;
  int foodX, foodY;
-  int direction = UP;
-  int foodEaten;
+ int direction = UP;
+ int foodEaten;
+  ArrayList<Segment> tail =  new ArrayList<Segment> ();
 
 
 //*
@@ -58,6 +59,9 @@ void draw() {
   move();
   drawSnake();
   eat();
+  drawTail();
+  manageTail();
+  
 }
 
 void drawFood() {
@@ -80,12 +84,16 @@ void drawSnake() {
 
 void drawTail() {
   //Draw each segment of the tail 
-
+   
+  fill(#00F9FF);
+  rect (10,10,10,10);
 }
 
 void manageTail() {
   //After drawing the tail, add a new segment at the "start" of the tail and remove the one at the "end" 
   //This produces the illusion of the snake tail moving.
+  checkTailCollision();
+  drawTail();
   
 }
 
@@ -101,31 +109,16 @@ void checkTailCollision() {
 //*
 
 void keyPressed() {
-  if (key == CODED){
-  
-    if (keyCode == UP){
-    if (direction != DOWN){
-      direction = UP;
+  if (key == CODED) {
+    if ((keyCode == UP && direction != DOWN) ||
+      (keyCode == DOWN && direction != UP) ||
+      (keyCode == LEFT && direction != RIGHT) ||
+      (keyCode == RIGHT && direction != LEFT)) {
+
+      direction = keyCode;
     }
-    }
-    else if (keyCode == DOWN){
-    if (direction != UP){
-      direction = DOWN;
-    }
-    else if (keyCode == RIGHT){
-      if (direction != LEFT){
-       direction = RIGHT; 
-      }
-    }
-    else if (keyCode == LEFT){
-     if (direction != RIGHT){
-      direction = LEFT; 
-     }
-    }
+  }
 }
-    
-}
-} 
 void move() {
   //Change the location of the Snake head based on the direction it is moving.
   
