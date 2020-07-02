@@ -122,11 +122,10 @@ void checkTailCollision() {
 
 void keyPressed() {
   if (key == CODED) {
-    if ((keyCode == UP && direction != DOWN) ||
+   if((keyCode == UP && direction != DOWN) ||
       (keyCode == DOWN && direction != UP) ||
       (keyCode == LEFT && direction != RIGHT) ||
       (keyCode == RIGHT && direction != LEFT)) {
-
       direction = keyCode;
     }
   }
@@ -166,8 +165,6 @@ void checkBoundaries() {
  }
  
 }
-
-
 
 void eat() {
   //When the snake eats the food, its tail should grow and more food appear
